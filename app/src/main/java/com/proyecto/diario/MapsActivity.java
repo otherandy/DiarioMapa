@@ -2,8 +2,13 @@ package com.proyecto.diario;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -16,6 +21,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private Button btnAdd;
+    private Button btnPosition;
+    Location currentLocation;
+    FusedLocationProviderClient fusedLocationProviderClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +38,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        btnAdd = (Button) findViewById(R.id.btnPosition);
+        btnPosition = (Button) findViewById(R.id.btnPosition);
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        btnPosition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     /**
@@ -43,10 +72,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+
         LatLng riviera = new LatLng(31.8573718, -116.6189615);
         mMap.addMarker(new MarkerOptions().position(riviera).title("Museo Riviera"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(riviera));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+
+
     }
+
+    //metodo para obtener posicion actual del dispositivo
+
 }
