@@ -6,6 +6,6 @@
     android:id="@+id/activity_main"
     tools:context=".MainActivity">
 
-<!--    <include layout="@layout/activity_maps" />-->
+    <!-- <include layout="@layout/activity_maps"/> -->
     <include layout="@layout/activity_notes"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

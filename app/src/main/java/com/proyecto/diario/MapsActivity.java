@@ -23,6 +23,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     private Button btnAdd;
     private Button btnPosition;
+    private Button btnAbout;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -39,8 +40,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        btnAdd = (Button) findViewById(R.id.btnPosition);
+        btnAdd = (Button) findViewById(R.id.btnAdd);
         btnPosition = (Button) findViewById(R.id.btnPosition);
+        btnAbout = (Button) findViewById(R.id.btnAbout);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -52,6 +54,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         btnPosition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
