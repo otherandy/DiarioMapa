@@ -1,43 +1,1 @@
-package com.proyecto.diario;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewbinding.ViewBinding;
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.proyecto.diario.databinding.ActivityNotesBinding;
-
-public class MainActivity extends AppCompatActivity {
-
-    private BottomSheetBehavior<View> sheetBehavior;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        View bottomSheet = findViewById(R.id.activity_notes);
-        sheetBehavior = BottomSheetBehavior.from(bottomSheet);
-
-        sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                switch (newState) {
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                    case BottomSheetBehavior.STATE_EXPANDED:
-                    case BottomSheetBehavior.STATE_COLLAPSED:
-                        break;
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-            }
-        });
-    }
-}
+package com.proyecto.diario;import android.os.Bundle;import android.view.View;import androidx.annotation.NonNull;import androidx.appcompat.app.AppCompatActivity;import com.google.android.material.bottomsheet.BottomSheetBehavior;import com.google.android.material.floatingactionbutton.FloatingActionButton;public class MainActivity extends AppCompatActivity {    @Override    protected void onCreate(Bundle savedInstanceState) {        super.onCreate(savedInstanceState);        setContentView(R.layout.activity_main);        View bottomSheet = findViewById(R.id.activity_notes);        BottomSheetBehavior<View> sheetBehavior = BottomSheetBehavior.from(bottomSheet);        sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {            @Override            public void onStateChanged(@NonNull View bottomSheet, int newState) {                switch (newState) {                    case BottomSheetBehavior.STATE_HIDDEN:                    case BottomSheetBehavior.STATE_EXPANDED:                    case BottomSheetBehavior.STATE_COLLAPSED:                    case BottomSheetBehavior.STATE_DRAGGING:                    case BottomSheetBehavior.STATE_HALF_EXPANDED:                    case BottomSheetBehavior.STATE_SETTLING:                        break;                }            }            @Override            public void onSlide(@NonNull View bottomSheet, float slideOffset) {            }        });        FloatingActionButton btnAdd = (FloatingActionButton) findViewById(R.id.btnAdd);        FloatingActionButton btnPosition = (FloatingActionButton) findViewById(R.id.btnPosition);        FloatingActionButton btnAbout = (FloatingActionButton) findViewById(R.id.btnAbout);        btnAdd.setOnClickListener(view -> {        });        btnPosition.setOnClickListener(view -> {        });        btnAbout.setOnClickListener(view -> {        });    }}

@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:contentDescription="about"
+        map:maxImageSize="40dp"
+        map:srcCompat="@android:drawable/ic_menu_info_details" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="430dp"
+
+        android:layout_weight="1"
+        android:clickable="true"
+        android:contentDescription="Mi Ubicacion"
+        android:textAlignment="center"
+        android:visibility="visible"
+        map:maxImageSize="40dp"
+        map:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:contentDescription="Agregar Nota"
+        map:maxImageSize="40dp"
+        map:srcCompat="@android:drawable/ic_menu_add" />
+
     <!-- <include layout="@layout/activity_maps"/> -->
-    <include layout="@layout/activity_notes"/>
+    <include layout="@layout/activity_notes" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
