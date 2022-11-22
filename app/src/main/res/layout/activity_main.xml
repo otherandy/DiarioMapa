@@ -50,7 +50,8 @@
             map:maxImageSize="40dp"
             map:srcCompat="@android:drawable/ic_menu_add" />
 
+        <include layout="@layout/activity_maps" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include layout="@layout/activity_maps" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
