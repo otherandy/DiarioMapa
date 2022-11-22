@@ -7,44 +7,50 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAbout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1"
-        android:clickable="true"
-        android:contentDescription="about"
-        map:maxImageSize="40dp"
-        map:srcCompat="@android:drawable/ic_menu_info_details" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnPosition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="430dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="about"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent"
+            map:maxImageSize="40dp"
+            map:srcCompat="@android:drawable/ic_menu_info_details" />
 
-        android:layout_weight="1"
-        android:clickable="true"
-        android:contentDescription="Mi Ubicacion"
-        android:textAlignment="center"
-        android:visibility="visible"
-        map:maxImageSize="40dp"
-        map:srcCompat="@android:drawable/ic_menu_mylocation" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:layout_weight="1"
-        android:clickable="true"
-        android:contentDescription="Agregar Nota"
-        map:maxImageSize="40dp"
-        map:srcCompat="@android:drawable/ic_menu_add" />
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="Mi Ubicacion"
+            android:textAlignment="center"
+            android:visibility="visible"
+            map:layout_constraintBottom_toTopOf="@+id/btnAdd"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:maxImageSize="40dp"
+            map:srcCompat="@android:drawable/ic_menu_mylocation" />
 
-    <!-- <include layout="@layout/activity_maps"/> -->
-    <include layout="@layout/activity_notes" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="Agregar Nota"
+            map:layout_constraintBottom_toBottomOf="parent"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:maxImageSize="40dp"
+            map:srcCompat="@android:drawable/ic_menu_add" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/activity_maps" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
