@@ -8,6 +8,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.proyecto.diario.model.Note;
+
 import java.util.Calendar;
 
 import io.realm.Realm;
@@ -24,6 +26,7 @@ public class NoteActivity extends AppCompatActivity {
 
         Note note = new Note();
         note.setCreated(Calendar.getInstance().getTime());
+        note.setLocation(31.8573718, -116.6189615);
 
         Button saveButton = findViewById(R.id.saveButton);
         EditText editText = findViewById(R.id.noteText);

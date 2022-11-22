@@ -1,23 +1,71 @@
 package com.proyecto.diario.model;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
 
-@Entity(tableName = "notes")
-public class Note {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+import com.google.android.gms.maps.model.LatLng;
 
-    @ColumnInfo(name = "title")
-    public String title;
+import org.bson.types.ObjectId;
 
-    @ColumnInfo(name = "note")
-    public String note;
+import java.util.Date;
 
-    @ColumnInfo(name = "date")
-    public String date;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-    @ColumnInfo(name = "location")
-    public String location;
+public class Note extends RealmObject {
+    @PrimaryKey
+    private ObjectId _id = new ObjectId();
+    private String content;
+    private Date created;
+    private Date updated;
+    private double lat;
+    private double lng;
+
+    public String getId() {
+        return _id.toString();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
+
+    public LatLng getLocation() {
+        return new LatLng(lat, lng);
+    }
+
+    public void setLocation(double latitude, double longitude) {
+        this.lat = latitude;
+        this.lng = longitude;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Note{" +
+                "_id=" + _id +
+                ", content='" + content + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", location=" + getLocation() +
+                '}';
+    }
 }

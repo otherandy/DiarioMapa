@@ -1,10 +1,12 @@
 package com.proyecto.diario;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.proyecto.diario.model.Note;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
