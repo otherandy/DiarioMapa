@@ -3,6 +3,7 @@ package com.proyecto.diario;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -15,6 +16,8 @@ import java.util.Calendar;
 import io.realm.Realm;
 
 public class NoteActivity extends AppCompatActivity {
+    double currentLat;
+    double currentLon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +26,12 @@ public class NoteActivity extends AppCompatActivity {
 
         // Get a Realm instance for this thread
         Realm realm = Realm.getDefaultInstance();
+        //Get data from MainActivity
+        recieveCoordinates();
 
         Note note = new Note();
         note.setCreated(Calendar.getInstance().getTime());
-        note.setLocation(31.8573718, -116.6189615);
+        note.setLocation(currentLat, currentLon);
 
         Button saveButton = findViewById(R.id.saveButton);
         EditText editText = findViewById(R.id.noteText);
@@ -50,9 +55,15 @@ public class NoteActivity extends AppCompatActivity {
                     note.setUpdated(Calendar.getInstance().getTime());
                     bgRealm.insertOrUpdate(note);
                 }, () -> {
-                    // Log.d("Note", note.toString());
+                     //Log.d("Note", note.toString());
                 });
             }
         });
+    }
+
+    private void recieveCoordinates() {
+        Bundle extras = getIntent().getExtras();
+        currentLat = extras.getDouble("lat");
+        currentLon = extras.getDouble("lon");
     }
 }
