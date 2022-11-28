@@ -12,6 +12,18 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="mynotes"
+            android:layout_weight="1"
+            map:maxImageSize="40dp"
+            map:layout_constraintBottom_toTopOf="@+id/btnPosition"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:srcCompat="@android:drawable/ic_menu_myplaces" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +67,7 @@
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/activity_main" />
+            tools:layout="@android:layout/simple_gallery_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
