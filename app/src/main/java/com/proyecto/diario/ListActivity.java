@@ -1,6 +1,8 @@
 package com.proyecto.diario;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,6 +31,11 @@ public class ListActivity extends AppCompatActivity {
                 TextView textView = new TextView(this);
                 textView.setText(note.getContent());
                 linearLayout.addView(textView);
+                textView.setOnClickListener(view -> {
+                    Intent intent = new Intent(ListActivity.this, NoteActivity.class);
+                    intent.putExtra("note", note.getId());
+                    startActivity(intent);
+                });
             }
         });
     }

@@ -3,7 +3,6 @@ package com.proyecto.diario;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,6 +15,7 @@ import java.util.Calendar;
 import io.realm.Realm;
 
 public class NoteActivity extends AppCompatActivity {
+    Bundle extras;
     double currentLat;
     double currentLon;
 
@@ -26,12 +26,21 @@ public class NoteActivity extends AppCompatActivity {
 
         // Get a Realm instance for this thread
         Realm realm = Realm.getDefaultInstance();
-        //Get data from MainActivity
-        recieveCoordinates();
 
-        Note note = new Note();
-        note.setCreated(Calendar.getInstance().getTime());
-        note.setLocation(currentLat, currentLon);
+        //Get data from MainActivity
+        extras = getIntent().getExtras();
+        String noteId = extras.getString("note");
+        currentLat = extras.getDouble("lat");
+        currentLon = extras.getDouble("lon");
+
+        Note note;
+        if (noteId != null) {
+            note = realm.where(Note.class).equalTo("_id", noteId).findFirst();
+        } else {
+            note = new Note();
+            note.setCreated(Calendar.getInstance().getTime());
+            note.setLocation(currentLat, currentLon);
+        }
 
         Button saveButton = findViewById(R.id.saveButton);
         EditText editText = findViewById(R.id.noteText);
@@ -51,6 +60,7 @@ public class NoteActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 realm.executeTransactionAsync(bgRealm -> {
+                    assert note != null;
                     note.setContent(editable.toString());
                     note.setUpdated(Calendar.getInstance().getTime());
                     bgRealm.insertOrUpdate(note);
@@ -59,11 +69,5 @@ public class NoteActivity extends AppCompatActivity {
                 });
             }
         });
-    }
-
-    private void recieveCoordinates() {
-        Bundle extras = getIntent().getExtras();
-        currentLat = extras.getDouble("lat");
-        currentLon = extras.getDouble("lon");
     }
 }
