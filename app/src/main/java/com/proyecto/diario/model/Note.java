@@ -14,6 +14,7 @@ import io.realm.annotations.PrimaryKey;
 public class Note extends RealmObject {
     @PrimaryKey
     private ObjectId _id = new ObjectId();
+    private String title;
     private String content;
     private Date created;
     private Date updated;
@@ -24,6 +25,13 @@ public class Note extends RealmObject {
         return _id.toString();
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
     public String getContent() {
         return content;
     }
@@ -62,6 +70,7 @@ public class Note extends RealmObject {
     public String toString() {
         return "Note{" +
                 "_id=" + _id +
+                ", title= '" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", created=" + created +
                 ", updated=" + updated +

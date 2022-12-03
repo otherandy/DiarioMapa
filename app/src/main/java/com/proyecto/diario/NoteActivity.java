@@ -43,10 +43,36 @@ public class NoteActivity extends AppCompatActivity {
         }
 
         Button saveButton = findViewById(R.id.saveButton);
-        EditText editText = findViewById(R.id.noteText);
+        EditText titleText = findViewById(R.id.titleText);
+        EditText noteText = findViewById(R.id.noteText);
 
         saveButton.setOnClickListener(view -> onBackPressed());
-        editText.addTextChangedListener(new TextWatcher() {
+
+        titleText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                realm.executeTransactionAsync(bgRealm -> {
+                    assert note != null;
+                    note.setTitle(editable.toString());
+                    note.setUpdated(Calendar.getInstance().getTime());
+                    bgRealm.insertOrUpdate(note);
+                }, () -> {
+                    //Log.d("Note", note.toString());
+                });
+            }
+        });
+
+        noteText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
