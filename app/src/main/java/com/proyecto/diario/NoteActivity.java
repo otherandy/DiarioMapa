@@ -31,15 +31,15 @@ public class NoteActivity extends AppCompatActivity {
 
         //Get data from MainActivity
         extras = getIntent().getExtras();
-        ObjectId noteId = (ObjectId) extras.get("note");
-        currentLat = extras.getDouble("lat");
-        currentLon = extras.getDouble("lon");
+        String noteTitle = extras.getString("note");
 
         Note note;
-        if (noteId != null) {
-            note = realm.where(Note.class).equalTo("_id", noteId).findFirst();
+        if (noteTitle != null) {
+            note = realm.where(Note.class).equalTo("title", noteTitle).findFirst();
         } else {
             note = new Note();
+            currentLat = extras.getDouble("lat");
+            currentLon = extras.getDouble("lon");
             note.setCreated(Calendar.getInstance().getTime());
             note.setLocation(currentLat, currentLon);
         }
