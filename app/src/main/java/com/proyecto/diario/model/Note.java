@@ -21,8 +21,8 @@ public class Note extends RealmObject {
     private double lat;
     private double lng;
 
-    public String getId() {
-        return _id.toString();
+    public ObjectId getId() {
+        return _id;
     }
 
     public String getTitle() {

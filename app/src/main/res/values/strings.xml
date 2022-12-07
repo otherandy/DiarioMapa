@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DiarioMapa</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_about">AboutActivity</string>
+    <string name="app_name">Diario Mapa</string>
+    <string name="title_activity_main">Diario Mapa</string>
+    <string name="title_activity_about">About</string>
 </resources>

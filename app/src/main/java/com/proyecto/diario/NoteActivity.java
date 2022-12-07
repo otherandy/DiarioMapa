@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.proyecto.diario.model.Note;
 
+import org.bson.types.ObjectId;
+
 import java.util.Calendar;
 
 import io.realm.Realm;
@@ -29,7 +31,7 @@ public class NoteActivity extends AppCompatActivity {
 
         //Get data from MainActivity
         extras = getIntent().getExtras();
-        String noteId = extras.getString("note");
+        ObjectId noteId = (ObjectId) extras.get("note");
         currentLat = extras.getDouble("lat");
         currentLon = extras.getDouble("lon");
 
