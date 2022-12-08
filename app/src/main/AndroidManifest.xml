@@ -41,21 +41,25 @@
         </activity>
         <activity
             android:name=".AboutActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/title_activity_about">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="@string/title_activity_about" />
         </activity>
         <activity
             android:name=".ListActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/title_activity_listActivity">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="@string/title_activity_listActivity"
+                />
         </activity>
         <activity
             android:name=".NoteActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/title_activity_noteAcitivy">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
