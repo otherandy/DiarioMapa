@@ -12,8 +12,14 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Note extends RealmObject {
+    public Note() {
+        _id = new ObjectId();
+        title = "Titulo";
+        content = "";
+    }
+
     @PrimaryKey
-    private ObjectId _id = new ObjectId();
+    private ObjectId _id;
     private String title;
     private String content;
     private Date created;
@@ -21,8 +27,8 @@ public class Note extends RealmObject {
     private double lat;
     private double lng;
 
-    public ObjectId getId() {
-        return _id;
+    public String getId() {
+        return _id.toHexString();
     }
 
     public String getTitle() {
@@ -32,6 +38,7 @@ public class Note extends RealmObject {
     public void setTitle(String title) {
         this.title = title;
     }
+
     public String getContent() {
         return content;
     }
