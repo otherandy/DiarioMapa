@@ -29,13 +29,20 @@ public class NoteActivity extends AppCompatActivity {
         // Get a Realm instance for this thread
         Realm realm = Realm.getDefaultInstance();
 
+        EditText titleText = findViewById(R.id.titleText);
+        EditText noteText = findViewById(R.id.noteText);
+
         //Get data from MainActivity
         extras = getIntent().getExtras();
         String noteTitle = extras.getString("note");
+        String noteId = extras.getString("id");
 
         Note note;
         if (noteTitle != null) {
-            note = realm.where(Note.class).equalTo("title", noteTitle).findFirst();
+            note = realm.where(Note.class).equalTo("_id", new ObjectId(noteId)).findFirst();
+            assert note != null;
+            titleText.setText(note.getTitle());
+            noteText.setText(note.getContent());
         } else {
             note = new Note();
             currentLat = extras.getDouble("lat");
@@ -45,9 +52,6 @@ public class NoteActivity extends AppCompatActivity {
         }
 
         Button saveButton = findViewById(R.id.saveButton);
-        EditText titleText = findViewById(R.id.titleText);
-        EditText noteText = findViewById(R.id.noteText);
-
         saveButton.setOnClickListener(view -> onBackPressed());
 
         titleText.addTextChangedListener(new TextWatcher() {
@@ -63,13 +67,11 @@ public class NoteActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                realm.executeTransactionAsync(bgRealm -> {
+                realm.executeTransaction(r -> {
                     assert note != null;
                     note.setTitle(editable.toString());
                     note.setUpdated(Calendar.getInstance().getTime());
-                    bgRealm.insertOrUpdate(note);
-                }, () -> {
-                    //Log.d("Note", note.toString());
+                    r.insertOrUpdate(note);
                 });
             }
         });
@@ -87,13 +89,11 @@ public class NoteActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                realm.executeTransactionAsync(bgRealm -> {
+                realm.executeTransaction(bgRealm -> {
                     assert note != null;
                     note.setContent(editable.toString());
                     note.setUpdated(Calendar.getInstance().getTime());
                     bgRealm.insertOrUpdate(note);
-                }, () -> {
-                     //Log.d("Note", note.toString());
                 });
             }
         });
